@@ -1,0 +1,634 @@
+\documentclass[a4paper, oneside, english,reqno]{amsart}
+
+
+\usepackage[utf8]{inputenx}
+\usepackage{amsthm, amsmath, amssymb, amsfonts, mathrsfs, mathtools, stmaryrd}
+\usepackage{babel, textcomp, url, enumerate, latexsym, graphicx, varioref, hyperref, multirow, layout, siunitx, booktabs}
+\usepackage{pdflscape}
+\usepackage{verbatim}
+\usepackage{geometry}
+
+\usepackage{tikz, babel, rotating, tikz-cd, pigpen}
+\usetikzlibrary{matrix, arrows, decorations.pathmorphing}
+%\usepackage{ntheorem}
+\usepackage{cleveref}
+\RequirePackage[color       = blue!20,
+                bordercolor = black,
+                textsize    = tiny,
+                figwidth    = 0.99\linewidth]{todonotes}
+
+%\presetkeys{shadows}
+%\usetikzlibrary{matrix, arrows}
+\usepackage[all]{xy}
+\usepackage{microtype}
+%\usepackage{enumitem}
+ %\usepackage{manfnt}
+
+\usepackage[backend = biber, style = alphabetic, url = false, isbn = false, doi = false]{biblatex}
+\addbibresource{ref.bib}
+
+\DeclarePairedDelimiter{\p}{\lparen}{\rparen}
+\DeclarePairedDelimiter{\set}{\{}{\}}
+\DeclarePairedDelimiter{\abs}{|}{|}
+\DeclarePairedDelimiter{\norm}{\|}{\|}
+\DeclarePairedDelimiter{\bracket}{[}{]}
+\DeclarePairedDelimiter{\bbracket}{\llbracket}{\rrbracket}
+\DeclarePairedDelimiter{\ip}{\langle}{\rangle}
+\DeclarePairedDelimiter{\pfister}{\langle\!\langle}{\rangle\!\rangle}
+
+%\counterwithout{section}{chapter}
+
+% Theorems
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{scholium}[theorem]{Scholium}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{statement}[theorem]{Statement}
+
+%\newtheoremstyle{named}{}{}{\itshape}{}{\bfseries}{.}{.5em}{#1 \thmnote{#3}}
+%\theoremstyle{named}
+%\newtheorem*{namedtheorem}{Theorem}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Example}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{idea}[theorem]{Idea}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{remarks}[theorem]{Remarks}
+
+%\newcommand{\pushout}{\arrow[dr,phantom,\text{\pigpenfont R}]}
+%\newcommand{\pushout}{\arrow[dr,phantom, ``\ulcorner'', very near start]}
+\newcommand{\latHom}[3]{\operatorname{Hom}_{#1}(#2,#3)}
+\newcommand{\gr}[1]{#1^{\textbf{gr}}}
+\newcommand{\quot}[2]{#1/#2 #1}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+\newcommand{\ee}{é}
+\newcommand{\nr}{\mathrm{nr}}
+\newcommand{\nc}{\mathrm{nc}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\et}{\textup{\ee{}t}}
+%\newcommand{\MW}{\textup{MW}}
+%\newcommand{\Milnor}{\textup{M}}
+\newcommand{\iso}{\mathrm{iso}}
+\newcommand{\Nis}{\mathrm{Nis}}
+\newcommand{\Zar}{\mathrm{Zar}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\re}{\mathrm{Re}}
+\newcommand{\ordinary}{\mathrm{ord}}
+\newcommand{\DD}{\Delta}
+\newcommand{\bb}{\bullet}
+\newcommand{\DQ}{\mathbf{DQ}}
+
+\newcommand{\rmc}{\mathrm{c}}
+\newcommand{\sspt}{\mathbf{1}}
+\newcommand{\A}{\mathbf{A}}
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\D}{\mathbf{D}}
+\newcommand{\E}{\mathbf{E}}
+\newcommand{\F}{\mathbf{F}}
+\newcommand{\G}{\mathbf{G}}
+\newcommand{\HH}{\mathbf{H}}
+\newcommand{\I}{\mathbf{I}}
+\newcommand{\J}{\mathbf{J}}
+\newcommand{\K}{\mathbf{K}}
+\newcommand{\LL}{\mathbf{L}}
+\newcommand{\M}{\mathbf{M}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\OO}{\mathbf{O}}
+\newcommand{\PP}{\mathbf{P}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\bfS}{\mathbf{S}}
+\newcommand{\T}{\mathbf{T}}
+\newcommand{\U}{\mathbf{U}}
+\newcommand{\V}{\mathbf{V}}
+\newcommand{\W}{\mathbf{W}}
+\newcommand{\X}{\mathbf{X}}
+\newcommand{\Y}{\mathbf{Y}}
+\newcommand{\Z}{\mathbf{Z}}
+
+\newcommand{\Zp}{\mathbf{Z}_p}
+%\newcommand{\R}{\mathbf{R}}
+%\newcommand{\HH}{\mathbf{H}}
+%\newcommand{\G}{\mathbf{G}}
+%\newcommand{\SS}{\mathbf{S}}
+
+\newcommand{\bfa}{\mathbf{a}}
+\newcommand{\bfb}{\mathbf{b}}
+\newcommand{\bfc}{\mathbf{c}}
+\newcommand{\bfd}{\mathbf{d}}
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bff}{\mathbf{f}}
+\newcommand{\bfg}{\mathbf{g}}
+\newcommand{\bfh}{\mathbf{h}}
+\newcommand{\bfi}{\mathbf{i}}
+\newcommand{\bfj}{\mathbf{j}}
+\newcommand{\bfk}{\mathbf{k}}
+\newcommand{\bfl}{\mathbf{l}}
+\newcommand{\bfm}{\mathbf{m}}
+\newcommand{\bfn}{\mathbf{n}}
+\newcommand{\bfo}{\mathbf{o}}
+\newcommand{\bfp}{\mathbf{p}}
+\newcommand{\bfq}{\mathbf{q}}
+\newcommand{\bfr}{\mathbf{r}}
+\newcommand{\bfs}{\mathbf{s}}
+\newcommand{\bft}{\mathbf{t}}
+\newcommand{\bfu}{\mathbf{u}}
+\newcommand{\bfv}{\mathbf{v}}
+\newcommand{\bfw}{\mathbf{w}}
+\newcommand{\bfx}{\mathbf{x}}
+\newcommand{\bfy}{\mathbf{y}}
+\newcommand{\bfz}{\mathbf{z}}
+
+\newcommand{\fraka}{\mathfrak{a}}
+\newcommand{\frakA}{\mathfrak{A}}
+\newcommand{\frakb}{\mathfrak{b}}
+\newcommand{\frakB}{\mathfrak{B}}
+\newcommand{\frakc}{\mathfrak{c}}
+\newcommand{\frakC}{\mathfrak{C}}
+\newcommand{\frakd}{\mathfrak{d}}
+\newcommand{\frakD}{\mathfrak{D}}
+\newcommand{\frakE}{\mathfrak{E}}
+\newcommand{\frakF}{\mathfrak{F}}
+\newcommand{\frakG}{\mathfrak{G}}
+\newcommand{\frakH}{\mathfrak{H}}
+\newcommand{\frakI}{\mathfrak{I}}
+\newcommand{\frakJ}{\mathfrak{J}}
+\newcommand{\frakK}{\mathfrak{K}}
+\newcommand{\frakL}{\mathfrak{L}}
+\newcommand{\frakm}{\mathfrak{m}}
+\newcommand{\frakM}{\mathfrak{M}}
+\newcommand{\frakn}{\mathfrak{n}}
+\newcommand{\frakN}{\mathfrak{N}}
+\newcommand{\frako}{\mathfrak{o}}
+\newcommand{\frakp}{\mathfrak{p}}
+\newcommand{\frakP}{\mathfrak{P}}
+\newcommand{\frakq}{\mathfrak{q}}
+\newcommand{\frakQ}{\mathfrak{Q}}
+\newcommand{\frakr}{\mathfrak{r}}
+\newcommand{\frakR}{\mathfrak{R}}
+\newcommand{\fraks}{\mathfrak{s}}
+\newcommand{\frakS}{\mathfrak{S}}
+\newcommand{\frakt}{\mathfrak{t}}
+\newcommand{\frakT}{\mathfrak{T}}
+\newcommand{\fraku}{\mathfrak{u}}
+\newcommand{\frakU}{\mathfrak{U}}
+\newcommand{\frakv}{\mathfrak{v}}
+\newcommand{\frakV}{\mathfrak{V}}
+\newcommand{\frakw}{\mathfrak{w}}
+\newcommand{\frakW}{\mathfrak{W}}
+\newcommand{\frakx}{\mathfrak{x}}
+\newcommand{\frakX}{\mathfrak{X}}
+\newcommand{\fraky}{\mathfrak{y}}
+\newcommand{\frakY}{\mathfrak{Y}}
+\newcommand{\frakz}{\mathfrak{z}}
+\newcommand{\frakZ}{\mathfrak{Z}}
+
+\newcommand{\sfa}{\mathsf{a}}
+\newcommand{\sfA}{\mathsf{A}}
+\newcommand{\sfb}{\mathsf{b}}
+\newcommand{\sfB}{\mathsf{B}}
+\newcommand{\sfc}{\mathsf{c}}
+\newcommand{\sfC}{\mathsf{C}}
+\newcommand{\sfd}{\mathsf{d}}
+\newcommand{\sfD}{\mathsf{D}}
+\newcommand{\sfE}{\mathsf{E}}
+\newcommand{\sff}{\mathsf{f}}
+\newcommand{\sfF}{\mathsf{F}}
+\newcommand{\sfG}{\mathsf{G}}
+\newcommand{\sfH}{\mathsf{H}}
+\newcommand{\sfI}{\mathsf{I}}
+\newcommand{\sfJ}{\mathsf{J}}
+\newcommand{\sfK}{\mathsf{K}}
+\newcommand{\sfL}{\mathsf{L}}
+\newcommand{\sfm}{\mathsf{m}}
+\newcommand{\sfM}{\mathsf{M}}
+\newcommand{\sfn}{\mathsf{n}}
+\newcommand{\sfN}{\mathsf{N}}
+\newcommand{\sfo}{\mathsf{o}}
+\newcommand{\sfp}{\mathsf{p}}
+\newcommand{\sfP}{\mathsf{P}}
+\newcommand{\sfq}{\mathsf{q}}
+\newcommand{\sfQ}{\mathsf{Q}}
+\newcommand{\sfr}{\mathsf{r}}
+\newcommand{\sfR}{\mathsf{R}}
+\newcommand{\sfs}{\mathsf{s}}
+\newcommand{\sfS}{\mathsf{S}}
+\newcommand{\sft}{\mathsf{t}}
+\newcommand{\sfT}{\mathsf{T}}
+\newcommand{\sfu}{\mathsf{u}}
+\newcommand{\sfU}{\mathsf{U}}
+\newcommand{\sfv}{\mathsf{v}}
+\newcommand{\sfV}{\mathsf{V}}
+\newcommand{\sfw}{\mathsf{w}}
+\newcommand{\sfW}{\mathsf{W}}
+\newcommand{\sfx}{\mathsf{x}}
+\newcommand{\sfX}{\mathsf{X}}
+\newcommand{\sfy}{\mathsf{y}}
+\newcommand{\sfY}{\mathsf{Y}}
+\newcommand{\sfz}{\mathsf{z}}
+\newcommand{\sfZ}{\mathsf{Z}}
+
+\newcommand{\scrA}{\mathscr{A}}
+\newcommand{\scrB}{\mathscr{B}}
+\newcommand{\scrC}{\mathscr{C}}
+\newcommand{\scrD}{\mathscr{D}}
+\newcommand{\scrE}{\mathscr{E}}
+\newcommand{\scrF}{\mathscr{F}}
+\newcommand{\scrG}{\mathscr{G}}
+\newcommand{\scrH}{\mathscr{H}}
+\newcommand{\scrI}{\mathscr{I}}
+\newcommand{\scrJ}{\mathscr{J}}
+\newcommand{\scrK}{\mathscr{K}}
+\newcommand{\scrL}{\mathscr{L}}
+\newcommand{\scrM}{\mathscr{M}}
+\newcommand{\scrN}{\mathscr{N}}
+\newcommand{\scrO}{\mathscr{O}}
+\newcommand{\scrP}{\mathscr{P}}
+\newcommand{\scrQ}{\mathscr{Q}}
+\newcommand{\scrR}{\mathscr{R}}
+\newcommand{\scrS}{\mathscr{S}}
+\newcommand{\scrT}{\mathscr{T}}
+\newcommand{\scrU}{\mathscr{U}}
+\newcommand{\scrV}{\mathscr{V}}
+\newcommand{\scrW}{\mathscr{W}}
+\newcommand{\scrX}{\mathscr{X}}
+\newcommand{\scrY}{\mathscr{Y}}
+\newcommand{\scrZ}{\mathscr{Z}}
+
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\calD}{\mathcal{D}}
+\newcommand{\calE}{\mathcal{E}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\calI}{\mathcal{I}}
+\newcommand{\calJ}{\mathcal{J}}
+\newcommand{\calK}{\mathcal{K}}
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calM}{\mathcal{M}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\calO}{\mathcal{O}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calQ}{\mathcal{Q}}
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\calS}{\mathcal{S}}
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\calU}{\mathcal{U}}
+\newcommand{\calV}{\mathcal{V}}
+\newcommand{\calW}{\mathcal{W}}
+\newcommand{\calX}{\mathcal{X}}
+\newcommand{\calY}{\mathcal{Y}}
+\newcommand{\calZ}{\mathcal{Z}}
+
+%CATEGORIES, SPECTRA
+\newcommand{\DM}{\mathbf{DM}}
+\newcommand{\KGL}{\mathsf{KGL}}
+\newcommand{\SemiGrp}{\mathrm{SemiGrp}}
+\newcommand{\Ab}{\mathrm{Ab}}
+\newcommand{\CMon}{\mathrm{CMon}}
+\newcommand{\Sch}{\mathrm{Sch}}
+\newcommand{\VB}{\mathrm{VB}}
+\newcommand{\modbar}{\mathrm{mod}\text{-}}
+\newcommand{\barmod}{\text{-}\mathrm{mod}}
+\newcommand{\baralg}{\text{-}\mathrm{alg}}
+\newcommand{\Sm}{\mathrm{Sm}}
+\newcommand{\SmOp}{\mathrm{SmOp}}
+\newcommand{\calSH}{\mathcal{SH}}
+\newcommand{\bfSH}{\mathbf{SH}}
+\newcommand{\SH}{\mathbf{SH}}
+\newcommand{\calMS}{\mathcal{MS}}
+\newcommand{\bfMS}{\mathbf{MS}}
+\newcommand{\MS}{\mathbf{MS}}
+%\newcommand{\Ho}{\mathbf{Ho}}
+\newcommand{\Ho}{\mathrm{Ho}}
+\newcommand{\Spc}{\mathrm{Spc}}
+\newcommand{\Spt}{\mathrm{Spt}}
+\newcommand{\Pre}{\mathrm{Pre}}
+\newcommand{\sPre}{s\mathrm{Pre}}
+\newcommand{\Set}{\mathrm{Set}}
+\newcommand{\sSet}{s\mathrm{Set}}
+\newcommand{\Shv}{\mathrm{Shv}}
+\newcommand{\sShv}{\mathrm{sShv}}
+\newcommand{\Cat}{\mathrm{Cat}}
+\newcommand{\Et}{\mathrm{Ét}}
+\newcommand{\fEt}{f\mathrm{Ét}}
+\newcommand{\SBil}{\mathrm{SBil}}
+\newcommand{\pos}{\mathrm{pos}}
+\newcommand{\Top}{\mathrm{Top}}
+\newcommand{\Vect}{\mathrm{Vect}}
+\newcommand{\tensor}{\otimes}
+\newcommand{\Ch}{\mathrm{Ch}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\gm}{\mathrm{gm}}
+\newcommand{\Mgm}{M_{\mathrm{gm}}}
+\newcommand{\Mgmt}{\widetilde{M_{\mathrm{gm}}}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\tr}{\mathrm{tr}}
+%\newcommand{\Cor}{\mathrm{Cor}}
+\newcommand{\PST}{\mathrm{PST}}
+\newcommand{\PSh}{\mathrm{PSh}}
+\newcommand{\pst}{presheaf with transfers}
+\newcommand{\psts}{presheaves with transfers}
+\newcommand{\NisEx}{Nisnevich Excisive}
+\newcommand{\Sus}{\mathrm{Sus}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\HoA}{\Ho^{\A^1}}
+\newcommand{\SingA}{\Sing^{\A^1}}
+\newcommand{\ExA}{\mathrm{Ex}^{\A^1}}
+\newcommand{\piA}{\pi^{\A^1}}
+\newcommand{\Gm}{\G_m}
+\newcommand{\KR}{KR}
+\newcommand{\ext}{\mathrm{ext}}
+%\newcommand{\MS}{\mathcal{MS}}
+\newcommand{\etale}{\'etale}
+\newcommand{\MGL}{\mathsf{MGL}}
+\newcommand{\red}{\mathrm{red}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\pair}{\mathrm{pr}}
+\newcommand{\DMA}{{\mathbf{DM}}_A}
+
+%\newcommand{\valv}{\mathrm{v}}
+%\newcommand{\valw}{\mathrm{w}}
+
+\newcommand{\strek}{\textthreequartersemdash}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\resprod}{\mathrlap{\coprod}{\prod}}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\obj}{obj}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\hofib}{hofib}
+\DeclareMathOperator{\hocofib}{hocofib}
+%\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Gr}{Gr}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Fun}{Fun}
+%\DeclareMathOperator{\Ho}{Ho} %%% homotopy category
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\PDer}{PDer}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\bfProj}{\mathbf{Proj}}
+\DeclareMathOperator{\bfSpec}{\mathbf{Spec}}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Pl}{Pl}
+\DeclareMathOperator{\St}{St}
+\DeclareMathOperator{\Nm}{Nm}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Max}{Max}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\ob}{ob}
+
+%\DeclareMathOperator{\obj}{obj}
+\DeclareMathOperator{\Bl}{Bl}
+\DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\equi}{equi}
+\DeclareMathOperator{\BGL}{BGL}
+\DeclareMathOperator{\cKGL}{KGL}
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\Sing}{Sing}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Kor}{Kor}
+\DeclareMathOperator{\varlim}{\displaystyle{\lim_{\longleftarrow}}}
+\DeclareMathOperator{\varcolim}{\displaystyle{\lim_{\longrightarrow}}}
+\DeclareMathOperator{\colim}{colim}
+\DeclareMathOperator{\holim}{holim}
+\DeclareMathOperator{\hocolim}{hocolim}
+\DeclareMathOperator{\cone}{cone}
+\DeclareMathOperator{\cyl}{Cyl}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\sk}{sk}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\shom}{\mathbf{Hom}} %% simplicial homotopy object
+\DeclareMathOperator{\Th}{Th}
+\DeclareMathOperator{\tho}{th}
+%\DeclareMathOperator{\red}{red}
+\DeclareMathOperator{\cof}{cof}
+\DeclareMathOperator{\topp}{top}
+\DeclareMathOperator{\hp}{hp}
+\DeclareMathOperator{\Ev}{Ev}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\Bez}{Bez}
+
+\DeclareMathOperator{\injj}{inj}
+\DeclareMathOperator{\proj}{proj}
+
+\newcommand*\cocolon{%
+        \nobreak
+        \mskip6mu plus1mu
+        \mathpunct{}%
+        \nonscript
+        \mkern-\thinmuskip
+        {:}%
+        \mskip2mu
+        \relax
+}
+
+%\newcommand{\SheafHom}{\mathscr{H}\kern-3pt \calligraphic{om}}
+\newcommand{\SheafHom}{\mathscr{H}\kern-3pt om}
+%\DeclareMathOperator{\SheafHom}{Shom}
+\SelectTips{cm}{10}  
+
+
+\begin{document}
+
+\title{Cohomological correspondence categories}
+\author{Andrei Druzhinin and Håkon Kolderup}
+\maketitle
+
+\section{Introduction}
+
+\begin{definition}\label{def:coh}
+Let $A^*$ be a twisted cohomology theory with supports on the category of smooth varieties over a noetherian separated base scheme $S$ of finite Krull dimension (check hypotheses). We say that $A^*$ is a \emph{good} cohomology theory if $A^*$ satisfies the following properties:
+\begin{enumerate}
+\item The cohomology theory is a \emph{ring cohomology theory}, i.e., there is a associative product structure
+\[
+A^n(X,\scrL)\otimes A^m(Y,\scrM)\to A^{n+m}(X\times_S Y,\scrL\boxtimes \scrM)
+\]
+and a unit $1\in A^0(S)$. (Remark: Equivalent to having cup product)
+\item (Homotopy invariance) Let $X$ be a smooth $S$ scheme, let $\scrL$ be a line bundle on $X$ and let $Z$ be a closed subset of $X$. Then there is a natural isomorphism
+\[
+A^*_{Z\times\A^1}(X\times\A^1,\scrL)\cong A^*_Z(X,\scrL),
+\]
+where $p\colon X\times\A^1\to X$ is the projection.
+\item (Pushforward) Suppose that $f\colon X\to Y$ is a morphism of smooth equidimensional $S$-schemes of dimensions $d_X$ respectively $d_Y$. Suppose moreover that $Z\subseteq X$ is a closed subset such that $f|_Z$ is finite. Then, for any $n\ge0$ and any line bundle $\scrL$ on $Y$, there is a pushforward homomorphism
+\[
+f_*\colon A^n_Z(X,\omega_f\otimes f^*\scrL)\to A^{n+d_Y-d_X}_{f(Z)}(Y,\scrL).
+\]
+\item Base change
+\item Excision
+\item (Gersten resolution?)
+
+\end{enumerate}
+\end{definition}
+
+To show:
+\begin{itemize}
+\item Given $\DMA(k)$, we can define $A$-motivic cohomology $H_A^{p,q}(X,\mathbb{Z})=[M_A(X),\mathbb{Z}_A(q)[p]]_{\DMA(k)}$. Then $H_A^{p,p}(\Spec k,\mathbb{Z})\cong A^p(\Spec k)$. Maybe we here need to assume that the cohomology theory $A^*$ is defined as sheaf cohomology of a strictly $\A^1$-invariant Nisnevich sheaf (which, by Morel, has admits a Gersten resolution).
+\item There is an adjunction $\gamma^*: \SH(k)\rightleftarrows \DMA(k):\gamma_*$, and the spectrum $\gamma_*(\mathbb{Z}_A)$ is effective.
+\item Let $\mathscr{A}$ be a strict category of V-correspondences in the sense of Garkusha, and let $\DM_{\mathscr{A}}(k)$ be the associated derived category of motives, with Lefschetz motive $\mathbb{Z}_{\mathscr{A}}(1)$. Let $A^*$ be the cohomology theory defined as $A^n(X)=H^n_{\Nis}(X,\mathbb{Z}_{\mathscr{A}}(n))$. Then $A^*$ is a good cohomology theory, and there is an equivalence $\DMA(k)[1/e]\simeq\DM_{\mathscr{A}}(k)[1/e]$ after inverting the exponential characteristic.
+\end{itemize}
+
+\section{Cohomological correspondences}
+
+Let $k$ be a field, and suppose that $A^*$ is a good cohomology theory. For $X,Y\in\Sm_k$, we write $X\times Y\defeq X\times_k Y$. Moreover, we abbreviate $\omega_{X\times Y/X}$ to $\omega_Y$.
+
+\begin{definition}
+Let $X$ and $Y$ be smooth connected $k$-schemes of dimension $d_X$ respectively $d_Y$. We define the group of \emph{$A$-correspondences from $X$ to $Y$} as
+\[
+A\Cor_k(X,Y)\defeq\underset{T\in\calA(X,Y)}{\colim}A^{d_Y}(X\times Y,\omega_{Y}).
+\]
+If $X$ or $Y$ are not equidimensional, we sum over the equidimensional components.
+\end{definition}
+
+We will need to consider also a relative version of the above construction.
+
+\begin{definition}
+Suppose that $p\colon X\to S$ is a smooth map. Denote by $\calA_0(X/S)$ the set of \emph{admissible subsets of $X$ relative to $S$}---that is, closed subsets $T\subseteq X$ of $X$ such that each irreducible component of $T_\red$ is finite and surjective over $S$ via the map $p$. The set $\calA_0(X/S)$ is partially ordered by inclusions. As the empty set has no irreducible components, it is admissible.
+\end{definition}
+
+%Note that we can regard $\calA_0(X/S)$ as a subset of $\calA(S,X)$ by associating to each element $i\colon T\to X$ of $\calA_0(X/S)$ the element $(p\circ i,i)\colon T\to S\times X$ of $\calA(S,X)$. Moreover, %if $p\colon X\times S\to S$ is the projection, then $\calA_0(X\times S/S)=\calA(S,X)$.
+
+If $p\colon X\to S$ is smooth of relative dimension $n$, we define a covariant functor of abelian groups
+\[
+\calA_0(X/S)\to\Ab
+\]
+by $T\mapsto A_T(X,\omega_{X/S})$. If $T'\subseteq T$, we have an extension of supports homomorphism $A_{T'}(X,\omega_{X/S})\to A_{T}(X,\omega_{X/S})$. We will consider the colimit of this functor.
+
+\begin{definition}\label{def:rel}
+Suppose that $p\colon X\to S$ is a smooth map of relative dimension $n$, with $S$ equidimensional. Assume first that $X$ is also equidimensional. We let
+\[
+C^A_0(X/S)\defeq \underset{T\in\calA_0(X/S)}{\colim} A_T^{n}(X,\omega_{X/S})
+\]
+denote the group of \emph{relative $A$-correspondences}.
+
+If $X$ is not equidimensional, we may write $X=\coprod_j X_j$ where the $X_j$'s are the equidimensional components of $X$. We then set
+\[
+C^A_0(X/S)\defeq\prod_j C^A_0(X_j/S).
+\]
+\end{definition}
+
+The groups $C_0^A(X/S)$ allow us to define a category $A\Cor_S$ of relative $A$-correspondences, in which the composition is constructed in a similar fashion as \cite{Calmes-Fasel}:
+
+\begin{definition}
+For $S$ a base scheme\todo{do we need that S is smooth over a field?}, let $A\Cor_S$ denote the category whose objects are the same as the objects of $\Sm_S$, i.e., smooth separated schemes of finite type over $S$, and morphisms defined as follows. Let $X,Y\in\Sm_S$, and suppose first that $X$ and $Y$ are equidimensional. We then let
+\[
+A\Cor_S(X,Y)\defeq C^A_0(X\times_S Y/X).\]
+If $X$ or $Y$ are not equidimensional, let $X=\coprod_iX_i$ and $Y=\coprod_jY_j$ be the equidimensional decomposition of $X$ and $Y$. Then we put $A\Cor_S(X,Y)\defeq\prod_{i,j}A\Cor_S(X_i,Y_j)$.
+
+Furthermore, defining $X\oplus Y\defeq X\amalg Y$ for any $X,Y\in\Sm_S$ turns $A\Cor_S$ into an additive category with the empty scheme as zero-object. We refer to this category as the category of \emph{relative $A$-correspondences}.
+\end{definition}
+
+We have an embedding $\Sm_S\to A\Cor_S$ defined identically as in \cite{Calmes-Fasel}. Furthermore, for $S$ a smooth $k$-scheme there is a functor $A\Cor_k\to A\Cor_S$ defined as follows. For any $X\in\Sm_k$, let $X_S\defeq X\times_k S$. Let $X,Y\in\Sm_k$; by working with one connected component at a time, we may assume that $X$ and $Y$ are connected. By the universal property of fiber products we have a morphism $f\colon X_S\times_S Y_S\to X\times Y$, which induces a pullback morphism
+\[
+f^*\colon A_T^{\dim Y}(X\times Y,\omega_{Y})\to A_{f^{-1}(T)}^{\dim Y}(X_S\times_S Y_S,f^*\omega_{Y})
+\]for any $T\in\calA_0(X\times_k Y/X)=\calA(X,Y)$. As finiteness and surjectivity are preserved under base change we have $f^{-1}(T)\in\calA_0(X_S\times_S Y_S/X_S)$. Now, recall that $X$ and $Y$ are assumed to be smooth of relative dimension $\dim X$ respectively $\dim Y$ over $\Spec k$. By base change for smooth morphisms, $X_S\to S$ is smooth of relative dimension $\dim X$, and similarly $Y_S\to S$ is smooth of relative dimension $\dim Y$. It then follows from \cite[III Proposition 10.1]{Hartshorne} that $X_S\times_S Y_S$ is smooth over $X_S$ of relative dimension $\dim Y$.
+
+Moreover, by smoothness, the canonical sheaf $\omega_{X/k}$ pulls back over $X_S$ to $\omega_{X_S/S}$ and similarly for $\omega_{Y/k}$. Hence $f^*\omega_{X\times Y/X}\cong\omega_{X_S\times_S Y_S/X_S}$. Since pullbacks commute with extension of support, we get an induced map on the colimit
+\[
+A\Cor_k(X,Y)\to C^A_0(X_S\times_S Y_S/X_S)=A\Cor_S(X_S,Y_S).
+\]
+All in all, we obtain a functor $A\Cor_k\to A\Cor_S$.
+
+
+
+
+\vspace{30pt}
+
+
+Let $k$ be a field and let $\Sm_k$ denote the category of smooth varieties.
+
+\begin{theorem}
+Suppose $A$ is a (twised??) cohomology theory $X\mapsto A^*(X,L)$ satisfying following axioms
+\begin{itemize}
+\item ring structure
+\item push forward
+\item base change
+\item homotopy invariance
+\item (Gersten conjecture)
+\end{itemize}
+Then for an infinite perfect field $k$ there is a category of motives $\DMA(k)$ with standard properties.
+\end{theorem}
+
+\begin{definition}
+Definition $ACor$.
+\end{definition}
+
+\begin{definition}
+Definition $ACor_S$.
+\end{definition}
+
+
+\begin{construction}\label{con:transposeCor}
+$f X\to Y$ is finite; $f^t$
+\end{construction}
+
+\begin{construction}\label{con:CorRelCurve}
+$f\colon \mathcal C\to \A^1_U$ is q.f., $Z(f)$ is finite;
+$\langle f\rangle_Z$
+\end{construction}
+
+
+\begin{theorem}
+excision on affine line
+\end{theorem}
+\begin{lemma}
+left inverse in the category of pairs
+\end{lemma}
+\begin{proof}
+
+\end{proof}
+\begin{lemma}
+
+\end{lemma}
+\begin{proof}
+$f$
+\end{proof}
+
+
+
+
+
+
+
+
+\printbibliography
+\end{document}
