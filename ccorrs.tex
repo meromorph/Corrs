@@ -95,6 +95,7 @@
 \newcommand{\DD}{\Delta}
 \newcommand{\bb}{\bullet}
 \newcommand{\DQ}{\mathbf{DQ}}
+\newcommand{\ACor}{A\mkern-3mu\Cor}
 
 \newcommand{\rmc}{\mathrm{c}}
 \newcommand{\sspt}{\mathbf{1}}
@@ -479,7 +480,7 @@
 \begin{definition}\label{def:coh}
 Let $A^*$ be a twisted cohomology theory with supports on the category of smooth varieties over a noetherian separated base scheme $S$ of finite Krull dimension (check hypotheses). We say that $A^*$ is a \emph{good} cohomology theory if $A^*$ satisfies the following properties:
 \begin{enumerate}
-\item The cohomology theory is a \emph{ring cohomology theory}, i.e., there is a associative product structure
+\item The cohomology theory is a \emph{ring cohomology theory}, i.e., there is an associative product structure
 \[
 A^n(X,\scrL)\otimes A^m(Y,\scrM)\to A^{n+m}(X\times_S Y,\scrL\boxtimes \scrM)
 \]
@@ -493,8 +494,17 @@ where $p\colon X\times\A^1\to X$ is the projection.
 \[
 f_*\colon A^n_Z(X,\omega_f\otimes f^*\scrL)\to A^{n+d_Y-d_X}_{f(Z)}(Y,\scrL).
 \]
-\item Base change
-\item Excision
+\item (Excision) Suppose that $f\colon X\to Y$ is a flat morphism of smooth $S$-schemes. Assume moreover that $Z\subseteq Y$ is a closed subset such that $f|_{f^{-1}(Z)}\colon f^{-1}(Z)\to Z$ is an isomorphism. Then the pullback homomorphism
+\[
+f^*\colon A^n_Z(Y,\scrL)\to A^n_{f^{-1}(Z)}(X,f^*\scrL)
+\]
+is an isomorphism for any line bundle $\scrL$ on $Y$ and any $n\ge0$.
+\item (Base change) Let
+\[\begin{tikzcd}
+X\ar{r}{\beta}\ar{d}{g} & X\ar{d}{f} \\
+Y'\ar{r}{\alpha} & Y
+\end{tikzcd}\]
+be a Cartesian square of smooth $S$-schemes\todo{assumptions on the diagram? e.g., $f$ proper, $f$ and $\alpha$ Tor-independent?}. Then $g_*\alpha^*=\beta^*f_*$.
 \item (Gersten resolution?)
 
 \end{enumerate}
@@ -502,7 +512,7 @@ f_*\colon A^n_Z(X,\omega_f\otimes f^*\scrL)\to A^{n+d_Y-d_X}_{f(Z)}(Y,\scrL).
 
 To show:
 \begin{itemize}
-\item Given $\DMA(k)$, we can define $A$-motivic cohomology $H_A^{p,q}(X,\mathbb{Z})=[M_A(X),\mathbb{Z}_A(q)[p]]_{\DMA(k)}$. Then $H_A^{p,p}(\Spec k,\mathbb{Z})\cong A^p(\Spec k)$. Maybe we here need to assume that the cohomology theory $A^*$ is defined as sheaf cohomology of a strictly $\A^1$-invariant Nisnevich sheaf (which, by Morel, has admits a Gersten resolution).
+\item Given $\DMA(k)$, we can define $A$-motivic cohomology $H_A^{p,q}(X,\mathbb{Z})\defeq[M_A(X),\mathbb{Z}_A(q)[p]]_{\DMA(k)}$. Then $H_A^{p,p}(\Spec k,\mathbb{Z})\cong A^p(\Spec k)$. Maybe we here need to assume that the cohomology theory $A^*$ is defined as sheaf cohomology of a strictly $\A^1$-invariant Nisnevich sheaf (which, by Morel, has admits a Gersten resolution).
 \item There is an adjunction $\gamma^*: \SH(k)\rightleftarrows \DMA(k):\gamma_*$, and the spectrum $\gamma_*(\mathbb{Z}_A)$ is effective.
 \item Let $\mathscr{A}$ be a strict category of V-correspondences in the sense of Garkusha, and let $\DM_{\mathscr{A}}(k)$ be the associated derived category of motives, with Lefschetz motive $\mathbb{Z}_{\mathscr{A}}(1)$. Let $A^*$ be the cohomology theory defined as $A^n(X)=H^n_{\Nis}(X,\mathbb{Z}_{\mathscr{A}}(n))$. Then $A^*$ is a good cohomology theory, and there is an equivalence $\DMA(k)[1/e]\simeq\DM_{\mathscr{A}}(k)[1/e]$ after inverting the exponential characteristic.
 \end{itemize}
@@ -514,7 +524,7 @@ Let $k$ be a field, and suppose that $A^*$ is a good cohomology theory. For $X,Y
 \begin{definition}
 Let $X$ and $Y$ be smooth connected $k$-schemes of dimension $d_X$ respectively $d_Y$. We define the group of \emph{$A$-correspondences from $X$ to $Y$} as
 \[
-A\Cor_k(X,Y)\defeq\underset{T\in\calA(X,Y)}{\colim}A^{d_Y}(X\times Y,\omega_{Y}).
+\ACor_k(X,Y)\defeq\underset{T\in\calA(X,Y)}{\colim}A^{d_Y}(X\times Y,\omega_{Y}).
 \]
 If $X$ or $Y$ are not equidimensional, we sum over the equidimensional components.
 \end{definition}
@@ -524,8 +534,6 @@ We will need to consider also a relative version of the above construction.
 \begin{definition}
 Suppose that $p\colon X\to S$ is a smooth map. Denote by $\calA_0(X/S)$ the set of \emph{admissible subsets of $X$ relative to $S$}---that is, closed subsets $T\subseteq X$ of $X$ such that each irreducible component of $T_\red$ is finite and surjective over $S$ via the map $p$. The set $\calA_0(X/S)$ is partially ordered by inclusions. As the empty set has no irreducible components, it is admissible.
 \end{definition}
-
-%Note that we can regard $\calA_0(X/S)$ as a subset of $\calA(S,X)$ by associating to each element $i\colon T\to X$ of $\calA_0(X/S)$ the element $(p\circ i,i)\colon T\to S\times X$ of $\calA(S,X)$. Moreover, %if $p\colon X\times S\to S$ is the projection, then $\calA_0(X\times S/S)=\calA(S,X)$.
 
 If $p\colon X\to S$ is smooth of relative dimension $n$, we define a covariant functor of abelian groups
 \[
@@ -546,38 +554,139 @@ C^A_0(X/S)\defeq\prod_j C^A_0(X_j/S).
 \]
 \end{definition}
 
-The groups $C_0^A(X/S)$ allow us to define a category $A\Cor_S$ of relative $A$-correspondences, in which the composition is constructed in a similar fashion as \cite{Calmes-Fasel}:
+The groups $C_0^A(X/S)$ allow us to define a category $\ACor_S$ of relative $A$-correspondences, in which the composition is constructed in a similar fashion as \cite{Calmes-Fasel}:
 
 \begin{definition}
-For $S$ a base scheme\todo{do we need that S is smooth over a field?}, let $A\Cor_S$ denote the category whose objects are the same as the objects of $\Sm_S$, i.e., smooth separated schemes of finite type over $S$, and morphisms defined as follows. Let $X,Y\in\Sm_S$, and suppose first that $X$ and $Y$ are equidimensional. We then let
+For $S$ a base scheme\todo{do we need that S is smooth over a field?}, let $\ACor_S$ denote the category whose objects are the same as the objects of $\Sm_S$, i.e., smooth separated schemes of finite type over $S$, and morphisms defined as follows. Let $X,Y\in\Sm_S$, and suppose first that $X$ and $Y$ are equidimensional. We then let
 \[
-A\Cor_S(X,Y)\defeq C^A_0(X\times_S Y/X).\]
-If $X$ or $Y$ are not equidimensional, let $X=\coprod_iX_i$ and $Y=\coprod_jY_j$ be the equidimensional decomposition of $X$ and $Y$. Then we put $A\Cor_S(X,Y)\defeq\prod_{i,j}A\Cor_S(X_i,Y_j)$.
+\ACor_S(X,Y)\defeq C^A_0(X\times_S Y/X).\]
+If $X$ or $Y$ are not equidimensional, let $X=\coprod_iX_i$ and $Y=\coprod_jY_j$ be the equidimensional decomposition of $X$ and $Y$. Then we put $\ACor_S(X,Y)\defeq\prod_{i,j}\ACor_S(X_i,Y_j)$.
 
-Furthermore, defining $X\oplus Y\defeq X\amalg Y$ for any $X,Y\in\Sm_S$ turns $A\Cor_S$ into an additive category with the empty scheme as zero-object. We refer to this category as the category of \emph{relative $A$-correspondences}.
+Furthermore, defining $X\oplus Y\defeq X\amalg Y$ for any $X,Y\in\Sm_S$ turns $\ACor_S$ into an additive category with the empty scheme as zero-object. We refer to this category as the category of \emph{relative $A$-correspondences}.
 \end{definition}
 
-We have an embedding $\Sm_S\to A\Cor_S$ defined identically as in \cite{Calmes-Fasel}. Furthermore, for $S$ a smooth $k$-scheme there is a functor $A\Cor_k\to A\Cor_S$ defined as follows. For any $X\in\Sm_k$, let $X_S\defeq X\times_k S$. Let $X,Y\in\Sm_k$; by working with one connected component at a time, we may assume that $X$ and $Y$ are connected. By the universal property of fiber products we have a morphism $f\colon X_S\times_S Y_S\to X\times Y$, which induces a pullback morphism
+We have an embedding $\Sm_S\to \ACor_S$ defined identically as in \cite{Calmes-Fasel}. Furthermore, for $S$ a smooth $k$-scheme there is a functor $\ACor_k\to \ACor_S$ defined as follows. For any $X\in\Sm_k$, let $X_S\defeq X\times_k S$. Let $X,Y\in\Sm_k$; by working with one connected component at a time, we may assume that $X$ and $Y$ are connected. By the universal property of fiber products we have a morphism $f\colon X_S\times_S Y_S\to X\times Y$, which induces a pullback morphism
 \[
 f^*\colon A_T^{\dim Y}(X\times Y,\omega_{Y})\to A_{f^{-1}(T)}^{\dim Y}(X_S\times_S Y_S,f^*\omega_{Y})
 \]for any $T\in\calA_0(X\times_k Y/X)=\calA(X,Y)$. As finiteness and surjectivity are preserved under base change we have $f^{-1}(T)\in\calA_0(X_S\times_S Y_S/X_S)$. Now, recall that $X$ and $Y$ are assumed to be smooth of relative dimension $\dim X$ respectively $\dim Y$ over $\Spec k$. By base change for smooth morphisms, $X_S\to S$ is smooth of relative dimension $\dim X$, and similarly $Y_S\to S$ is smooth of relative dimension $\dim Y$. It then follows from \cite[III Proposition 10.1]{Hartshorne} that $X_S\times_S Y_S$ is smooth over $X_S$ of relative dimension $\dim Y$.
 
 Moreover, by smoothness, the canonical sheaf $\omega_{X/k}$ pulls back over $X_S$ to $\omega_{X_S/S}$ and similarly for $\omega_{Y/k}$. Hence $f^*\omega_{X\times Y/X}\cong\omega_{X_S\times_S Y_S/X_S}$. Since pullbacks commute with extension of support, we get an induced map on the colimit
 \[
-A\Cor_k(X,Y)\to C^A_0(X_S\times_S Y_S/X_S)=A\Cor_S(X_S,Y_S).
+\ACor_k(X,Y)\to C^A_0(X_S\times_S Y_S/X_S)=\ACor_S(X_S,Y_S).
 \]
-All in all, we obtain a functor $A\Cor_k\to A\Cor_S$.
+All in all, we obtain a functor $\ACor_k\to \ACor_S$.
+
+\section{Injectivity for local schemes}\label{section:inj-loc-sch}
+The goal of this section is to prove the following theorem.
+
+\begin{theorem}\label{thm:inj-loc-sch}
+Let $X$ be a smooth $k$-scheme and $x\in X$ a closed point. Let $U\defeq\Spec\calO_{X,x}$ and write $\can\colon U\rightarrow X$ for the canonical inclusion. Let $i\colon Z\to X$ be a closed subscheme with $x\in Z$ and let $j\colon X\setminus Z\to X$ be the open complement. Then there exists a finite $A$-correspondence $\Phi\in\ACor_k(U,X\setminus Z)$ such that the diagram
+\[\begin{tikzcd}
+& X\setminus Z\ar[d,"j"]\\
+U\ar[ur,"\Phi"]\ar[r,"\can"] & X
+\end{tikzcd}\]
+commutes up to homotopy.
+\end{theorem}
+
+Let $X^\circ\subseteq X$ be an open neighborhood of the point $x$, and let $Z^\circ\defeq Z\cap X^\circ$. Then it is enough to solve the problem for the triple $U$, $X^\circ$ and $X^\circ\setminus Z^\circ$; in particular, we may assume that $X$ is irreducible and that the canonical sheaf $\omega_{X/k}$ is trivial. In fact, we will shrink $X$ so that we are in the situation of a relative curve over a quasi-projective scheme:
+
+\begin{theorem}[\protect{\cite[Proposition 1]{PSV}}]
+Let $X$, $Z$ and $x\in Z$ be as in \Cref{thm:inj-loc-sch}. Then there is a Zariski open neighborhood $X^\circ\subseteq X$ of the point $x$, an open subscheme $B$ of $\PP^{\dim X-1}$ and a commutative diagram
+\[\begin{tikzcd}
+  X^\circ\ar[r]\ar[dr,swap,"p"] & \ol X^\circ\ar[d,"\ol p"] & X_\infty^\circ\ar[l,swap]\ar[dl,"p_\infty"]\\
+& B &
+\end{tikzcd}\]
+satisfying the following properties:
+\begin{enumerate}
+\item[$(1)$] $\ol p$ is a smooth projective morphism, whose fibers are irreducible projective curves.
+\item[$(2)$] $X^\circ_\infty\defeq\ol X^\circ\setminus X^\circ$, and $p_\infty\colon X^\circ_\infty\to B$ is finite étale.
+\item[$(3)$] $p|_Z$ is finite and $Z\cap X_\infty=\varnothing$. 
+\end{enumerate}
+The morphism $p\colon X^\circ\to B$ is called an \em{almost elementary fibration}.
+\end{theorem}
+
+Following \cite[§7]{hty-inv}, we may shrink $X$ such that there exists an almost elementary fibration $p\colon X\to B$ and such that $\omega_{X/k}$ and $\omega_{B/k}$ are trivial, i.e., $\omega_{X/k}\cong\calO_X$ and $\omega_{B/k}\cong\calO_B$.
+Let $\scrX\defeq X\times_BU$ and $\scrZ\defeq Z\times_BU$. Let also $p_X\colon\scrX\to X$ and $p_U\colon\scrX\to U$ be the projections onto $X$ and $U$, respectively, and let $d_X$ denote the dimension of $X$. Finally, let $\Delta$ denote the morphism $\Delta\defeq(\can,\id)\colon U\to \scrX$.
+
+\begin{lemma}[\protect{\cite[Lemma 7.1]{hty-inv}}]\label{lemma:nice-map}
+There exists a finite surjective morphism 
+\[
+H_\theta=(h_\theta,p_U)\colon \scrX\to \A^1\times U
+\]
+over $U$, such that if we let $\scrD_1\defeq H_\theta^{-1}(1\times U)$ and $\scrD_0\defeq H_\theta^{-1}(0\times U)$ denote the scheme-theoretic preimages, then the following hold:
+\begin{enumerate}
+\item[$(1)$] $\scrD_1\subseteq \scrX\setminus\scrZ$.
+\item[$(2)$] $\scrD_0=\Delta(U)\amalg\scrD_0'$ with $\scrD_0'\subseteq\scrX\setminus\scrZ$.
+\end{enumerate}
+\end{lemma} 
+
+We will use \Cref{lemma:nice-map} to produce the desired $A$-correspondence $\Phi$. The aim is to define $\Phi$ as the image $(H_\theta\times1)_*(p_X)$ of the projection $p_X\in A^{d_X}_{\Gamma_{p_X}}(\scrX\times X,\omega_X)$ under the pushforward map
+\[
+(H_\theta\times1)_*\colon A^{d_X}_{\Gamma_{p_X}}(\scrX\times X,\omega_{H_\theta\times1}\otimes\omega_X)\to A^{d_X}_{(H_\theta\times1)(\Gamma_{p_X})}(\A^1\times U\times X,\omega_X).
+\]
+To this end, we need a trivialization of $\omega_{H_\theta\times1}=\omega_{\scrX\times X/k}\otimes(H_\theta\times1)^*\omega_{\A^\times U\times X/k}^\vee$. Now, as $U$ is local we have $\omega_{U/k}\cong\calO_U$. Keeping in mind the discussion preceding \Cref{lemma:nice-map}, it follows that the relative bundle $\omega_{H_\theta\times1}$ is also trivial.   
+Thus we may choose an isomorphism $\chi\colon\omega_{H_\theta\times1}\cong\calO_X$.
+
+\begin{definition}
+Let $p_X\in\ACor_k(\scrX,X)$ denote the projection. Using the trivialization $\chi$ above, we let $\scrH_\theta\in\ACor_k(\A^1\times U,X)$ denote the image of $p_X\in\ACor_k(\scrX,X)$ under the composition
+\begin{align*}
+ A^{d_X}_{\Gamma_{p_X}}(\scrX\times X,\omega_X)&\cong A^{d_X}_{\Gamma_{p_X}}(\scrX\times X,\omega_{H_\theta\times1}\otimes\omega_X)\\
+&\xrightarrow{(H_\theta\times1)_*} A_{(H_\theta\times1)(\Gamma_{p_X})}^{d_X}(\A^1\times U\times X,\omega_X).
+\end{align*}
+\end{definition}
+
+\begin{lemma}\label{lemma:support}
+The morphism $H_\theta\times1$ maps $\Gamma_{p_X}\cong\scrX$ isomorphically onto its image. Let $\scrH_0\defeq\scrH_\theta\circ i_0$ and $\scrH_1\defeq\scrH_\theta\circ i_1$. Identifying $\scrX$ with its image in $\A^1\times U\times X$, we then have $\supp\scrH_\theta=\scrX$, $\supp\scrH_0=\scrD_0$, and $\supp\scrH_1=\scrD_1$.
+\end{lemma}
+
+\begin{proof}
+If $y=((x,u),x),y'=((x',u'),x')\in\Gamma_{p_X}$ is such that
+\[
+(H_\theta\times1)(y)=(h_\theta(x,u),u,x)=(H_\theta\times1)(y')=(h_\theta(x',u'),x',u'),
+\]
+it follows that $x=x'$ and $u=u'$, hence $y=y'$. Thus we can consider $\scrX$ as a subscheme of $\A^1\times U\times X$ by $(x,u)\mapsto(h_\theta(x,u),u,x)$. Now, the $A$-correspondence $p_X$ is supported on $\Gamma_{p_X}$, hence $\supp\scrH_\theta=(H_\theta\times1)(\Gamma_{p_X})\cong\scrX$. We turn to the restrictions $\scrH_0$ and $\scrH_1$ of the homotopy $\scrH_\theta$. We have \todo{should be true} $\scrH_\theta\circ i_\epsilon=(i_\epsilon\times1)^*(\scrH_\theta)$, where $\epsilon=0,1$. It follows that $\supp\scrH_\epsilon=(i_\epsilon\times1)^{-1}((H_\theta\times1)(\Gamma_{p_X})),$ and this closed subset is determined by those points $(x,u)\in\scrX$ satisfying $h_\theta(x,u)=\epsilon$. In other words, $\supp\scrH_\epsilon=\scrD_\epsilon$.
+\end{proof}
+
+\begin{lemma}\label{lemma:finding-Phi}
+The finite $A$-correspondence $\scrH_\theta$ is a homotopy from $\scrH_0=\can+j\circ \Phi_0'$ to $\scrH_1=j\circ\Phi_1$, where $\Phi_0',\Phi_1\in\ACor_k(U,X\setminus Z)$.
+\end{lemma}
+
+\begin{proof}
+By Lemmas \ref{lemma:nice-map} and \ref{lemma:support} we have $\supp\scrH_0=\Delta(U)\amalg\scrD_0'$, where $\scrD_0'\subseteq\scrX\setminus\scrZ$. Thus we may write $\scrH_0=\alpha+\beta$ where $\alpha\in\ACor_k(U,X)$ is supported on $\Delta(U)$ and $\beta\in\ACor_k(U,X)$ is supported on $\scrD_0'$. Since $\supp\beta=\scrD_0'\subseteq\scrX\setminus\scrZ$, there exists \todo{to show} a unique finite $A$-correspondence  $\Phi_0'\in\ACor_k(U,X\setminus Z)$ such that $j\circ\Phi_0'=\beta$. Hence $\scrH_0$ is of the form $\scrH_0=\alpha+j\circ\Phi_0'$ for $\Phi_0'\in\ACor_k(U,X\setminus Z)$. The same reasoning shows that, since $\supp\scrH_1= \scrD_1\subseteq\scrX\setminus\scrZ$, there is a unique $A$-correspondence $\Phi_1\in\ACor_k(U,X\setminus Z)$ such that $\scrH_1=j\circ\Phi_1$. 
+
+It therefore only remains to understand the finite $A$-correspondence $\alpha\in A_{\Delta(U)}^{d_X}(U\times X,\omega_{X})$. Recall that, by definition, 
+\[
+\scrH_0=(i_0\times1)^*(H_\theta\times1)_*(\Gamma_{p_X})_*(\ip1).
+\]
+Let $i_{\Delta(U)}$ and $i_{\scrD_0}$ denote the respective inclusions $i_{\Delta(U)}\colon\Delta(U)\subseteq \scrX$ and $i_{\scrD_0}\colon\scrD_0\subseteq\scrX$. Base change applied to the pullback square
+\[\begin{tikzcd}
+(\Delta(U)\amalg\scrD_0')\times X\ar{r}{i_{\scrD_0}\times1}\ar{d}[swap]{H_\theta|_{\scrD_0}\times1} & \scrX\times X\ar{d}{H_\theta\times1}\\
+U\times X\ar{r}{i_0\times1} & \A^1\times U\times X
+\end{tikzcd}\]
+reveals that $\alpha=(H_\theta|_{\Delta(U)}\times1)_*(i_{\Delta(U)}\times1)^*(\Gamma_{p_X})_*(\ip1)$. Using that $\Delta\colon U\to\scrX$ is an isomorphism onto its image and that $H_\theta|_{\Delta(U)}\colon\Delta(U)\to U$ is an isomorphism, we may write $\alpha=(\Delta\times1)^*(\Gamma_{p_X})_*(\ip1)$. Next, consider the pullback diagram
+\[\begin{tikzcd}
+U\ar{rr}{\Delta}\ar{d}[swap]{\Gamma_\can} & & \scrX\ar{d}{\Gamma_{p_X}}\\
+U\times X\ar{rr}{\Delta\times1} & &\scrX\times X.
+\end{tikzcd}\]
+Using base change once more, we obtain $\alpha=(\Gamma_\can)_*(\ip1)=\wt\gamma_\can$.
+\end{proof}
+
+\begin{remark}
+The homotopy $\scrH_\theta$ does indeed depend on the choice of trivialization of $\omega_{H_\theta\times1}$. However, in the case of the finite $A$-correspondence $\alpha$ in the proof of \Cref{lemma:finding-Phi} above, recall that $\alpha=(H_{\theta}|_{\Delta(U)}\times1)_*(i_{\Delta(U)}\times1)^*(\Gamma_{p_X})_*(\ip1)$. Now, the relative bundle of $H_\theta|_{\Delta(U)}\colon\Delta(U)\to U$ is \emph{canonically} trivial, so the pushforward $(H_\theta|_{\Delta(U)}\times1)_*$ does not depend on the choice of trivialization. Any other choice of a trivialization of $\omega_{H_\theta\times1}$ yielding another homotopy $\scrH'_\theta$ would then satisfy $\scrH'_0=\can+j\circ\Phi_0''$ for some $\Phi_0''\in\ACor_k(U,X\setminus Z)$, which is sufficient for our purposes.
+\end{remark}
+
+\begin{proof}[Proof of \Cref{thm:inj-loc-sch}]
+In the notation of \Cref{lemma:finding-Phi}, let $\Phi\defeq\Phi_1-\Phi_0'\in\ACor_k(U,X\setminus Z)$. As $\scrH_\theta$ provides a homotopy from $\can+j\circ\Phi_0'$ to $j\circ\Phi_1$, it follows that $\can\simeq j\circ(\Phi_1-\Phi_0')=j\circ\Phi$.
+\end{proof}
 
 
-
-
-\vspace{30pt}
+\vspace{70pt}
 
 
 Let $k$ be a field and let $\Sm_k$ denote the category of smooth varieties.
 
 \begin{theorem}
-Suppose $A$ is a (twised??) cohomology theory $X\mapsto A^*(X,L)$ satisfying following axioms
+Suppose $A$ is a (twisted??) cohomology theory $X\mapsto A^*(X,L)$ satisfying following axioms
 \begin{itemize}
 \item ring structure
 \item push forward
