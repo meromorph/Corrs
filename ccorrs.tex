@@ -525,7 +525,7 @@ Let $k$ be a field, and suppose that $A^*$ is a good cohomology theory. For $X,Y
 \begin{definition}
 Let $X$ and $Y$ be smooth connected $k$-schemes of dimension $d_X$ respectively $d_Y$. We define the group of \emph{$A$-correspondences from $X$ to $Y$} as
 \[
-\ACor_k(X,Y)\defeq\underset{T\in\calA(X,Y)}{\colim}A^{d_Y}(X\times Y,\omega_{Y}).
+\ACor_k(X,Y)\defeq\underset{T\in\calA(X,Y)}{\colim}A_T^{d_Y}(X\times Y,\omega_{Y}).
 \]
 If $X$ or $Y$ are not equidimensional, we sum over the equidimensional components.
 \end{definition}
@@ -578,7 +578,7 @@ Moreover, by smoothness, the canonical sheaf $\omega_{X/k}$ pulls back over $X_S
 All in all, we obtain a functor $\ACor_k\to \ACor_S$.
 
 
-In the opposite direction there is a 'forgetful' functor $\ACor_S\to \ACor_k$ induced by pushforwards.
+In the opposite direction there is a ``forgetful'' functor $\ACor_S\to \ACor_k$ induced by pushforwards.
 Indeed, let $X,Y\in \Sm_S$. 
 %and consider pushforward homomorphism $A^{*}(X\times_S Y) \to A^{*+\dim S}()
 Then there is a pullback diagram
@@ -586,15 +586,16 @@ $$\xymatrix{
 X\times_S Y \ar[r]^{i_{X,Y}}\ar[d] & X\times_k Y\ar[d]\\
 \Delta_S \ar[r]^i & S\times_k S
 ,}$$
-where $\Delta_S\subset S\times S$ denotes diagonal,
-and hence $\omega(X\times_S Y)\otimes i^*(\omega(X\times Y))^{-1}= \omega(i_{X,Y}) \simeq \omega(i) = \omega(S)^{-1}$.
-Thus there is a pushforward homomorphism 
+where $\Delta_S\subset S\times S$ denotes diagonal. Moreover, we have isomorphisms
+\[\omega(X\times_S Y)\otimes i^*(\omega(X\times Y))^{-1}= \omega(i_{X,Y}) \simeq \omega(i) = \omega(S)^{-1}.\]
+Thus there is, for any $T\in\calA_0(X\times_SY/X)$, a pushforward homomorphism 
 \begin{align*}
-A^{\dim_S Y}_{fin}(X\times_S Y,\omega_S (Y))=A^{\dim_S Y}(X\times_S Y,\omega(Y)\otimes \omega(S)^{-1})&\to 
-A^{dim Y}_{fin}(X\times Y, \omega(Y) )\\
-&=ACor_k(X,Y).
+(i_{X,Y})_*\colon A^{\dim_S Y}_{T}(X\times_S Y,\omega_S (Y))=A^{\dim_S Y}_T(X\times_S Y,\omega(Y)\otimes \omega(S)^{-1})\to 
+A^{\dim Y}_{i_{X,Y}(T)}(X\times Y, \omega(Y) ).
 \end{align*}
- 
+Passing to the colimit, we thus obtain a map $\ACor_S(X,Y)\to\ACor_k(X,Y)$.
+
+
 \begin{construction}
 Suppose that there is a diagram
 \[\begin{tikzcd}
