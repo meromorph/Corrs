@@ -475,6 +475,7 @@
 \author{Andrei Druzhinin and Håkon Kolderup}
 \maketitle
 
+
 \section{Introduction}
 
 \begin{definition}\label{def:coh}
@@ -576,6 +577,58 @@ Moreover, by smoothness, the canonical sheaf $\omega_{X/k}$ pulls back over $X_S
 \]
 All in all, we obtain a functor $\ACor_k\to \ACor_S$.
 
+
+In the opposite direction there is a 'forgetful' functor $\ACor_S\to \ACor_k$ induced by pushforwards.
+Indeed, let $X,Y\in \Sm_S$. 
+%and consider pushforward homomorphism $A^{*}(X\times_S Y) \to A^{*+\dim S}()
+Then there is a pullback diagram
+$$\xymatrix{
+X\times_S Y \ar[r]^{i_{X,Y}}\ar[d] & X\times_k Y\ar[d]\\
+\Delta_S \ar[r]^i & S\times_k S
+,}$$
+where $\Delta_S\subset S\times S$ denotes diagonal,
+and hence $\omega(X\times_S Y)\otimes i^*(\omega(X\times Y))^{-1}= \omega(i_{X,Y}) \simeq \omega(i) = \omega(S)^{-1}$.
+Thus there is a pushforward homomorphism 
+\begin{align*}
+A^{\dim_S Y}_{fin}(X\times_S Y,\omega_S (Y))=A^{\dim_S Y}(X\times_S Y,\omega(Y)\otimes \omega(S)^{-1})&\to 
+A^{dim Y}_{fin}(X\times Y, \omega(Y) )\\
+&=ACor_k(X,Y).
+\end{align*}
+ 
+\begin{construction}
+Suppose that there is a diagram
+\[\begin{tikzcd}
+\calC\ar{r}{f}\ar{d}[swap]{p} & \A^1\\
+U &
+\end{tikzcd}
+\]
+satisfying the following properties:
+\begin{enumerate}
+\item $p\colon \mathcal C\to U$ is a smooth morphism with fibres being of dimension one,
+\item $f\colon \mathcal C\to \mathbb A^1$ is a regular map such that $F\defeq(f,p)\colon \mathcal C\to \mathbb A^1\times U$ is quasi-finite, 
+\item $Z(f)=Z\amalg Z^\prime$ is finite over $U$, and
+\item there is an isomorpism $\mu\colon \omega_{\mathcal C}\otimes\omega_U^{-1}=\mathcal O(\mathcal C)$
+\end{enumerate} 
+We can then define a finite $A$-correspondence $\langle f \rangle_Z\in ACor(U,\mathcal C)$ as follows:
+
+
+%Consider the graph $\Gamma\subset \mathcal C\times\mathbb A^1$ of the map $F$ over $U$ 
+%and 
+Let $\Gamma_F$ denote the graph the map $F$ over $U$, with embedding $i\colon \Gamma_F\hookrightarrow  \mathcal C\times\mathbb A^1$. \todo{could we as well consider the graph of $f$ instead of the graph of $F$?}
+Consider the pushforward homomorphism 
+$A^0(\Gamma,\mathcal O(\Gamma)\otimes\omega_{\mathbb A^1}^{-1})\to A_{\Gamma}^{1}(\mathcal C\times\mathbb A^1,\mathcal O(\mathcal C\times\mathbb A^1))$. Using the trivializations $\omega_{\mathbb A^1}\simeq \mathcal O(\mathbb A)$ and $\mu$ we get a homomorphism 
+$A^0(\Gamma,\mathcal O(\Gamma)\otimes\omega_{\mathbb A^1}^{-1})\to A_{\Gamma}^{1}(\mathcal C\times \mathbb A^1,\omega_{\mathcal C}\times \omega_U^{-1})$. 
+Let $i_*(1)\in A_{\Gamma}^{1}(\mathcal C\times\mathbb A^1,\omega \mathcal C\times \omega U^{-1})$ denote the image of $1\in  A^0(\Gamma,\mathcal O(\Gamma)$.
+
+Next, consider the base change along the zero section $i_0\colon U\times 0\to U\times\mathbb A^1$, and the pullback homomorphism \todo{should $i_0$ go from $\calC\times0$ instead of $U\times0$? So that $i_0^*$ goes from $A^1_\Gamma(\calC\times\A^1,...)$?}
+$i_0^*\colon A_{\Gamma}^{1}(\mathcal C,\omega_{\mathcal C}\times \omega_U^{-1})\to A_{Z(f)}^{1}(\mathcal C,\omega_{ \mathcal C}\times \omega_U^{-1})$. Since $Z(f)=Z\amalg Z^\prime$ we have $A_{Z(f)}^{1}(\mathcal C,\omega_{ \mathcal C}\times \omega_U^{-1})= A_{Z}^{1}(\mathcal C,\omega_{ \mathcal C}\times \omega_U^{-1})\oplus A_{Z^\prime}^{1}(\mathcal C,\omega_{ \mathcal C}\times \omega_U^{-1})$. So define $\langle f\rangle_Z$ as the image of $i_*(1)$ under the composition homomorphism
+$$A_{\Gamma}^{1}(\mathcal C,\omega_{\mathcal C}\times \omega_U^{-1})\to 
+A_{Z(f)}^{1}(\mathcal C,\omega_{ \mathcal C}\times \omega_U^{-1})\to
+A_{Z}^{1}(\mathcal C,\omega_{ \mathcal C}\times \omega_U^{-1})\to
+ACor_U(U,\mathcal C)\to ACor(U,\mathcal C).$$
+\end{construction} 
+ 
+
 \section{Injectivity for local schemes}\label{section:inj-loc-sch}
 The goal of this section is to prove the following theorem.
 
@@ -663,7 +716,9 @@ Let $i_{\Delta(U)}$ and $i_{\scrD_0}$ denote the respective inclusions $i_{\Delt
 (\Delta(U)\amalg\scrD_0')\times X\ar{r}{i_{\scrD_0}\times1}\ar{d}[swap]{H_\theta|_{\scrD_0}\times1} & \scrX\times X\ar{d}{H_\theta\times1}\\
 U\times X\ar{r}{i_0\times1} & \A^1\times U\times X
 \end{tikzcd}\]
-reveals that $\alpha=(H_\theta|_{\Delta(U)}\times1)_*(i_{\Delta(U)}\times1)^*(\Gamma_{p_X})_*(\ip1)$. Using that $\Delta\colon U\to\scrX$ is an isomorphism onto its image and that $H_\theta|_{\Delta(U)}\colon\Delta(U)\to U$ is an isomorphism, we may write $\alpha=(\Delta\times1)^*(\Gamma_{p_X})_*(\ip1)$. Next, consider the pullback diagram
+reveals that $\alpha=(H_\theta|_{\Delta(U)}\times1)_*(i_{\Delta(U)}\times1)^*(\Gamma_{p_X})_*(\ip1)$. Using that $\Delta\colon U\to\scrX$ is an isomorphism onto its image and that $H_\theta|_{\Delta(U)}\colon\Delta(U)\to U$ is an isomorphism, we may write 
+\[\alpha=(\Delta\times1)^*(\Gamma_{p_X})_*(\ip1).\] 
+Next, consider the pullback diagram
 \[\begin{tikzcd}
 U\ar{rr}{\Delta}\ar{d}[swap]{\Gamma_\can} & & \scrX\ar{d}{\Gamma_{p_X}}\\
 U\times X\ar{rr}{\Delta\times1} & &\scrX\times X.
@@ -731,8 +786,6 @@ left inverse in the category of pairs
 \begin{proof}
 $f$
 \end{proof}
-
-
 
 
 
